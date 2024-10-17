@@ -1,0 +1,129 @@
+/**
+ * Custom application mixins available through out the app
+ */
+
+// define sass mixin
+// Generates single property classes
+// -------------------------
+@mixin property-variants($base, $property, $variants: ()) {
+  @each $size, $value in $variants {
+    @if $size == 'md' {
+      #{$base} {
+        #{$property}: $value;
+      }
+
+      #{$base}-n {
+        #{$property}: $value;
+      }
+    }
+
+    #{$base}-#{$size} {
+      #{$property}: $value;
+    }
+
+    #{$base}-n-#{$size} {
+      #{$property}: -$value;
+    }
+  }
+}
+
+// Common thumbnail properties
+// -------------------------
+@mixin thumb($parent, $size) {
+  #{$parent} {
+    width: $size;
+
+    > .glyphicon,
+    > .fa {
+      line-height: $size;
+    }
+  }
+}
+
+@mixin placeholder($color: $input-color-placeholder) {
+  // Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+  &:-ms-input-placeholder { color: $color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder { color: $color; } // Safari and Chrome
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
+
+@mixin scroll-bar($color) {
+  &::-webkit-scrollbar {
+    height: 8px;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: none;
+    background-color: $color;
+  }
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@function theme-color($key: "primary") {
+  @return map-get($theme-colors, $key);
+}
+
+@mixin hover() {
+  &:hover { @content; }
+}
+
+@mixin hover-focus() {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+@mixin badge-variant($bg) {
+  color: $text-color;
+  background-color: $bg;
+  border: 1px solid $bg;
+
+  &[href] {
+    @include hover-focus {
+      background-color: $bg;
+    }
+  }
+}
+
+@mixin bg-variant($parent, $color, $ignore-warning: false) {
+  #{$parent} {
+    background-color: $color !important;
+  }
+  a#{$parent},
+  button#{$parent} {
+    @include hover-focus() {
+      background-color: darken($color, 10%) !important;
+    }
+  }
+}
+
+@mixin text-emphasis-variant($parent, $color, $ignore-warning: false) {
+  #{$parent} {
+    color: $color !important;
+  }
+  @if $emphasized-link-hover-darken-percentage != 0 {
+    a#{$parent} {
+      @include hover-focus() {
+        color: darken($color, $emphasized-link-hover-darken-percentage) !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import '../../../styles/app';
+
+.calendarModalInput {
+  border: 1px solid #e9ecef;
+  margin-top: 10px;
+}
+
+.root {
+  h4 {
+    font-size: 14px;
+  }
+
+  :global {
+    a {
+      text-decoration: none;
+    }
+    .fc-grid th {
+      text-transform: uppercase;
+    }
+
+    .fc-day-grid-event {
+      margin: 0;
+      padding: 0;
+    }
+
+    .fc .fc-list-sticky .fc-list-day > * {
+      background: $gray-900;
+    }
+
+    .fc .fc-list-event:hover td {
+      background-color: $violet_deep;
+      cursor: pointer;
+    }
+
+    .fc-event {
+      font-weight: $font-weight-normal;
+      border: 1px solid $text-color;
+      color: $text-color;
+      margin-left: 0!important;
+    }
+
+    .fc .fc-today {
+      background-color: rgba($subtle-blue, .6);
+    }
+
+    a.fc-event {
+      height: auto;
+      line-height: $line-height-base;
+      width: 100%;
+    }
+
+    /* ****  Full Calendar Custom   **** */
+    .full-calendar {
+      margin-top: 10px;
+    }
+
+    .calendar-controls {
+      .btn {
+        font-size: $font-size-mini;
+      }
+    }
+
+    .calendar-external-events {
+      margin-top: 20px;
+    }
+    .external-event {
+      background-color: $widget-bg-color;
+      border-radius: $border-radius;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+    }
+
+    .widget-calendar {
+      @include media-breakpoint-up(xl) {
+        margin-top: -100px;
+      }
+    }
+  }
+}
+
+.customExternalEvent {
+  font-size: $font-size-mini;
+  cursor: pointer;
+  box-shadow: $widget-shadow;
+}

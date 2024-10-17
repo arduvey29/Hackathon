@@ -1,0 +1,18 @@
+@import '../../../styles/app';
+
+.root {
+
+}
+
+.overFlow {
+  overflow-x: auto;
+  margin: 3%;
+}
+
+.mainTableWidget {
+  :global {
+    .table td {
+      border: none;
+    }
+  }
+}
